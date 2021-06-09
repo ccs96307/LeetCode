@@ -29,7 +29,7 @@ public:
             }
         }
 
-        // Reture
+        // Return
         ListNode* new_head = new ListNode();
         currentNode->next = new_head;
 
