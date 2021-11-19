@@ -6,18 +6,13 @@ public:
         int d = 0;
         
         // Count max n
-        while (true) {
-            if (x >= max_n || y >= max_n) {
-                if (max_n <= INT_MAX-max_n) max_n = max_n * 2;
-                else break;
-            }
-            else {
-                break;
-            }
+        while (x >= max_n || y >= max_n) {
+            if (max_n <= INT_MAX-max_n) max_n = max_n * 2;
+            else break;
         }
         
         // Create binary expressions
-        while (true) {
+        while (max_n != 1) {
             if (x >= max_n && y >= max_n) {
                 x -= max_n;
                 y -= max_n;
@@ -32,7 +27,6 @@ public:
             }
             
             max_n /= 2;
-            if (max_n == 1) break;
         }
         
         if (x != y) ++d;
@@ -40,3 +34,4 @@ public:
         return d;
     }
 };
+
