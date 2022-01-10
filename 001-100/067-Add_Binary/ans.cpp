@@ -9,7 +9,7 @@ public:
         int temp = 0;
         
         // a + b
-        while (ai >= 0 || bi >= 0) {
+        while (ai >= 0 || bi >= 0 || carry) {
             // Compute temp value
             temp = carry;
             if (ai >= 0 && a[ai] == '1') ++temp;
@@ -28,10 +28,8 @@ public:
             --bi;
         }
         
-        // If carry, we need to add the last carray value
-        if (carry) sum = "1" + sum;
-        
         // Answer
         return sum;
     }
 };
+
