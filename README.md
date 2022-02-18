@@ -1,1 +1,3 @@
-# LeetCode Experience
+# LeetCode Note
+The solutions I wrote may not be the best method...
+But I think they still can be some tips.
