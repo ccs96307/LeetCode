@@ -11,11 +11,11 @@ public:
         
         // Comparison
         for (int i=1; i<intervals.size(); ++i) {
-            if (intervals[i][0] > startpoint && intervals[i][1] > endpoint) {
-                ans += 1;
-            }
-            
             if (intervals[i][1] > endpoint) {
+                if (intervals[i][0] > startpoint) {
+                    ++ans;
+                }
+                
                 startpoint = intervals[i][0];
                 endpoint = intervals[i][1];
             }
@@ -24,4 +24,3 @@ public:
         return ans;
     }
 };
-
