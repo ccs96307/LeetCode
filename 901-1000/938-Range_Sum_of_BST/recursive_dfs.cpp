@@ -12,20 +12,23 @@
 class Solution {
 public:
     int rangeSumBST(TreeNode* root, int low, int high) {
+        // Base case
+        if (!root) {
+            return 0;
+        }
+
         // Init
-        int ans = 0;
-        if (root->val >= low && root->val <= high) ans = root->val;
-        
-        // Iter
-        if (root->left && root->val > low) {
-            ans += rangeSumBST(root->left, low, high);
+        int rangeSum = 0;
+
+        // If the value of root is inclusive [low, high].
+        if (root->val >= low && root->val <= high) {
+            rangeSum += root->val;
         }
-        
-        if (root->right && root->val < high) {
-            ans += rangeSumBST(root->right, low, high);
-        }
-                
-        return ans;
+
+        // Check the left node and right node
+        rangeSum += rangeSumBST(root->left, low, high);
+        rangeSum += rangeSumBST(root->right, low, high);
+
+        return rangeSum;
     }
 };
-
