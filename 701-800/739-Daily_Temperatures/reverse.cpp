@@ -10,11 +10,6 @@ public:
             int steps = 1;
             bool isFound = false;
 
-            // If the larger one is the previous point
-            if (temperatures[i] < temperatures[j]) {
-                isFound = true;
-            }
-
             // If `j` not out of boundary that we can explore
             while (j < temperatures.size()) {
                 if (temperatures[i] >= temperatures[j]) {
