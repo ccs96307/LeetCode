@@ -11,9 +11,11 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        // Init
         vector<int> v1;
         vector<int> v2;
 
+        // Convert into `vector`
         while (l1 != nullptr) {
             v1.emplace_back(l1->val);
             l1 = l1->next;
@@ -24,15 +26,19 @@ public:
             l2 = l2->next;
         }
 
+        // v1 have to be the longer one
         if (v1.size() < v2.size()) {
             swap(v1, v2);
         }
 
+        // Count how many zero we need to pad
         int zeroNum = v1.size() - v2.size();
 
+        // Zero padding
         vector<int> zeros(zeroNum, 0);
         zeros.insert(zeros.end(), v2.begin(), v2.end());
 
+        // Sum two vector, and do not forget `carry`
         int carry = 0;
         for (int i=v1.size()-1; i>=0; --i) {
             v1[i] += zeros[i] + carry;
