@@ -9,19 +9,26 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
+        // Base case
+        if (head == nullptr || head->next == nullptr) {
+            return false;
+        }
+
         // Init
         ListNode* slow = head;
         ListNode* fast = head;
-        
-        // Find
-        while (fast && fast->next) {
+
+        // `slow` steps 1, `fast` steps 2 
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
-            
-            if (slow == fast) return true;
+
+            if (slow == fast) {
+                return true;
+            }
         }
-        
+
+        // If reach the nullptr, it means there is no cycle
         return false;
     }
 };
-
