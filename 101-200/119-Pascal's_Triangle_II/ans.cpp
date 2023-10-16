@@ -1,32 +1,24 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<int> newRow;
-        vector<int> tempRow;
-        
-        for (int i=0; i<=rowIndex; ++i) {
-            if (i == 0) newRow.push_back(1);
-            else if (i == 1) {
-                newRow.clear();
-                newRow.push_back(1);
-                newRow.push_back(1);
-            }
-            else {
-                for (int j=0; j<i+1; ++j) {
-                    if (j == 0 || j == i) {
-                        tempRow.push_back(1);
-                    }
-                    else {
-                        tempRow.push_back(newRow[j-1]+newRow[j]);
-                    }
+        vector<int> previousRows({1});
+        vector<int> currentRows;
+
+        for (int index=0; index<rowIndex; ++index) {
+            for (int i=0; i<=previousRows.size(); ++i) {
+                if (i > 0 && i < previousRows.size()) {
+                    currentRows.emplace_back(previousRows[i-1]+previousRows[i]);
                 }
-                
-                newRow = tempRow;
-                tempRow.clear();
+                else {
+                    currentRows.emplace_back(1);
+                }
             }
+
+            previousRows = currentRows;
+            currentRows.clear();
         }
-        
-        return newRow;
+
+        return previousRows;
     }
 };
 
