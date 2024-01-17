@@ -2,23 +2,24 @@ class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
         // Init
-        unordered_map<int, bool> occurMap;
-        unordered_map<int, int> num2occur;
-        
+        unordered_map<int, int> count;
+        unordered_set<int> occurences;
+
         // Count
         for (int& n: arr) {
-            ++num2occur[n];
+            ++count[n];
         }
-        
-        // Check if collison
-        for (auto& it: num2occur) {
-            if (occurMap[it.second]) {
+
+        // Check unique proterty
+        for (auto& it: count) {
+            if (occurences.find(it.second) == occurences.end()) {
+                occurences.insert(it.second);
+            }
+            else {
                 return false;
             }
-            occurMap[it.second] = true;
         }
-        
+
         return true;
     }
 };
-
