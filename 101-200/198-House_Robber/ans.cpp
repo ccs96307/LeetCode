@@ -1,5 +1,5 @@
 class Solution {
-public:    
+public:
     int rob(vector<int>& nums) {
         // Base case
         if (nums.size() == 1) {
@@ -7,21 +7,13 @@ public:
         }
 
         // Init
-        int maxRob = max(nums[0], nums[1]);
+        nums[1] = max(nums[0], nums[1]);
 
-        // Find the best rob path
+        // Robbing
         for (int i=2; i<nums.size(); ++i) {
-            if (i - 3 >= 0) {
-                nums[i] += max(nums[i-2], nums[i-3]);
-            }
-            else {
-                nums[i] += nums[i-2];
-            }
-
-            maxRob = max(maxRob, nums[i]);
+            nums[i] = max(nums[i-2]+nums[i], nums[i-1]);
         }
 
-        return maxRob;
+        return max(nums[nums.size()-1], nums[nums.size()-2]);
     }
 };
-
