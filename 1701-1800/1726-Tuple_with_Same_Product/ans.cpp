@@ -8,14 +8,14 @@ public:
         // Count the duplicate products
         for (int i=0; i<nums.size(); ++i) {
             for (int j=i+1; j<nums.size(); ++j) {
-                product2times[nums[i] * nums[j]] += 1;
+                ++product2times[nums[i] * nums[j]];
             }
         }
 
         // Count the tuple number
-        for (auto &it: product2times) {
-            if (it.second > 1) {
-                tupleNum += 4 * (it.second * (it.second - 1));
+        for (const auto& [product, count] : product2times) {
+            if (count > 1) {
+                tupleNum += 4 * (count * (count - 1));
             }
         }
 
