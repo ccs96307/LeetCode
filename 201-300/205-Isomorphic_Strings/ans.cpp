@@ -1,29 +1,16 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        // Base case
-        if (s.size() != t.size()) {
-            return false;
-        }
-        
-        // Init
-        unordered_map<char, int> s2i;
-        unordered_map<char, int> t2i;
-        int si = 1;
-        int ti = 1;
-
-        // Compare
+        unordered_map<char, char> mpS2T;
+        unordered_map<char, char> mpT2S;
         for (int i=0; i<s.size(); ++i) {
-            if (s2i[s[i]] != t2i[t[i]]) {
-                return false;
+            if (mpS2T.find(s[i]) == mpS2T.end() && mpT2S.find(t[i]) == mpT2S.end()) {
+                mpS2T[s[i]] = t[i];
+                mpT2S[t[i]] = s[i];
             }
 
-            if (s2i[s[i]] == 0) {
-                s2i[s[i]] = si;
-                t2i[t[i]] = ti;
-
-                ++si;
-                ++ti;
+            if (mpS2T[s[i]] != t[i] || mpT2S[t[i]] != s[i]) {
+                return false;
             }
         }
 
