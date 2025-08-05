@@ -36,7 +36,6 @@ public:
 
             if (diff == 0) {
                 result = max(result, temp);
-                cout << result << endl;
             }
 
             ++s;
