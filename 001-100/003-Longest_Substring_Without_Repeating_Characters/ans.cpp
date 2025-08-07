@@ -1,22 +1,29 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // Init
-        int max_len = 0;
-        deque<char> sub_str = {};
-        
-        // Find the longest length
-        for (int i=0; i<s.size(); i++) {
-            while (find(sub_str.begin(), sub_str.end(), s[i]) != sub_str.end()) {
-                sub_str.pop_front();
+        int diff = 0;
+        int left = 0;
+        int longest = 0;
+        unordered_map<int, int> counts;
+
+        for (int i=0; i<s.size(); ++i) {
+            if (counts[s[i]] == 1) {
+                ++diff;
+            } 
+            ++counts[s[i]];
+
+            while (diff > 0) {
+                --counts[s[left]];
+                if (counts[s[left]] == 1) {
+                    --diff;
+                }
+                ++left;
             }
-            
-            sub_str.push_back(s[i]);
-            if (sub_str.size() > max_len) {
-                max_len = sub_str.size();
-            }
+
+            longest = max(longest, i - left + 1);
         }
-        
-        return max_len;
+
+        return longest;
     }
 };
+
